@@ -9,6 +9,7 @@ import Quotes from './components/pages/Quotes'
 import QuoteOTM from './components/pages/QuoteOTM'
 import Login from './components/pages/Login'
 import Footer from './components/Footer'
+import Register from './components/pages/Register'
 
 function App() {
   const [count, setCount] = useState(0)
