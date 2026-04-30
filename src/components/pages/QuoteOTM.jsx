@@ -3,9 +3,9 @@ import React, { memo, useState } from "react"
 function QuoteOTM () {
 
     const options = [
-        { title: "Option 1", desc: "First quote candidate" },
-        { title: "Option 2", desc: "Second quote candidate" },
-        { title: "Option 3", desc: "Third quote candidate" }
+        { title: "Back in Town", desc: "Don’t just teach your children to read... Teach them to question what they read." },
+        { title: "Life Is Worth Losing", desc: "We have multiplied our possessions, but reduced our values." },
+        { title: "Carlin at Carnegie", desc: "Have you ever noticed that anybody driving slower than you is an idiot, and anyone going faster than you is a maniac?" }
     ];
     
     const isLoggedIn = true; // This would come from your auth context or state
