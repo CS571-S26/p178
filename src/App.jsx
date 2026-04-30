@@ -21,7 +21,7 @@ function App() {
   const [showRegister, setShowRegister] = useState(false);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <WebsiteNavbar
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
@@ -52,7 +52,7 @@ function App() {
         handleClose={() => setShowRegister(false)}
         setIsLoggedIn={setIsLoggedIn}
       />
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
