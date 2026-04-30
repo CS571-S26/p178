@@ -8,22 +8,29 @@ import About from './components/pages/About'
 import Quotes from './components/pages/Quotes'
 import QuoteOTM from './components/pages/QuoteOTM'
 import Login from './components/pages/Login'
+import Footer from './components/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
 
-  return (
+  return (<>
     <BrowserRouter>
       <WebsiteNavbar />
+      <main className="page-content">
       <Routes>
         <Route path="/p178" element={<Home />} />
         <Route path="/p178/about" element={<About />} />
         <Route path="/p178/quotes" element={<Quotes />} />
         <Route path="/p178/QuoteOTM" element={<QuoteOTM />} />
         <Route path="/p178/login" element={<Login />} />
+        <Route path="/p178/register" element={<Register />} />
         <Route path="*" element={<Home />} />
       </Routes>
+      </main>
+
+      <Footer />
     </BrowserRouter>
+    </>
   )
 }
 

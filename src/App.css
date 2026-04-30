@@ -196,3 +196,15 @@ body {
     border-right-color: var(--border);
   }
 }
+
+/* Custom styles for the navbar */
+.navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.nav-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+}
