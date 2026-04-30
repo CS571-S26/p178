@@ -1,13 +1,32 @@
 import React, { useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
 
-export default function Login({ show, handleClose }) {
+export default function Login({ show, handleClose, setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // prevent page reload
-    alert("Login functionality is not implemented yet.");
+    e.preventDefault();
+
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (!savedUser) {
+      alert("No user found. Please register first.");
+      return;
+    }
+
+    if (
+      username === savedUser.username &&
+      password === savedUser.password
+    ) {
+      alert("Login successful!");
+
+      localStorage.setItem("loggedIn", "true");
+      setIsLoggedIn(true);
+      handleClose();
+    } else {
+      alert("Invalid credentials");
+    }
   };
 
   return (
@@ -19,18 +38,16 @@ export default function Login({ show, handleClose }) {
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="username">Username</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control
-              id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="password">Password</Form.Label>
+            <Form.Label>Password</Form.Label>
             <Form.Control
-              id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

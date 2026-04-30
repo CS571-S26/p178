@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
 
-export default function Register({ show, handleClose }) {
+export default function Register({ show, handleClose, setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -14,7 +14,19 @@ export default function Register({ show, handleClose }) {
       return;
     }
 
-    alert("Registration functionality is not implemented yet.");
+    const user = {
+      username,
+      password
+    };
+
+    localStorage.setItem("user", JSON.stringify(user));
+
+    // auto-login (optional but recommended for UX)
+    localStorage.setItem("loggedIn", "true");
+    setIsLoggedIn(true);
+
+    alert("User registered!");
+    handleClose();
   };
 
   return (
@@ -26,9 +38,8 @@ export default function Register({ show, handleClose }) {
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="username">Username</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control
-              id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               autoFocus
@@ -36,9 +47,8 @@ export default function Register({ show, handleClose }) {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="password">Password</Form.Label>
+            <Form.Label>Password</Form.Label>
             <Form.Control
-              id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -46,9 +56,8 @@ export default function Register({ show, handleClose }) {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="confirmPassword">Confirm Password</Form.Label>
+            <Form.Label>Confirm Password</Form.Label>
             <Form.Control
-              id="confirmPassword"
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -56,12 +65,16 @@ export default function Register({ show, handleClose }) {
           </Form.Group>
 
           {password !== confirmPassword && (
-                <div className="text-danger mb-2">Passwords do not match</div>
+            <div className="text-danger mb-2">
+              Passwords do not match
+            </div>
           )}
 
-          <Button type="submit" className="w-100"
+          <Button
+            type="submit"
+            className="w-100"
             disabled={!username || !password || !confirmPassword}
-            >
+          >
             Register
           </Button>
         </Form>
